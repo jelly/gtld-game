@@ -1,4 +1,3 @@
-gTLD Game
 gTLD game
 =========
 
