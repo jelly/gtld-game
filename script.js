@@ -1,4 +1,3 @@
-var answer = "";
 var keys;
 var counter;
 var score;
@@ -81,9 +80,13 @@ function random_question() {
 
   if (counter < keys.length) {
     var gtld = keys[counter];
-    counter++;
     answer = countries[gtld];
-    document.getElementById('gtld').innerText = gtld;
+    counter++;
+
+    var gtld_elem = document.getElementById('gtld');
+    gtld_elem.dataset.answer = answer;
+    gtld_elem.innerText = gtld;
+
     var text = "Questions left: " + counter + "/" + keys.length;
     document.getElementById('questions').innerText = text;
   } else {
@@ -105,6 +108,9 @@ function enter(event) {
 
   var country_elem = document.getElementById('country');
   var country = country_elem.value;
+
+  var gtld_elem = document.getElementById('gtld');
+  answer = gtld_elem.dataset.answer;
 
   if (answer.match(country) !== -1 && (similarity(answer, country) * 100) >= 80) {
     score++; 
