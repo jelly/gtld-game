@@ -1,6 +1,5 @@
 #!/usr/bin/python
 
-
 import json
 from lxml import html
 
@@ -28,6 +27,5 @@ for tr in tbody.findall('tr'):
 
     mapping[domain] = country
 
-open('countries.json', 'w').writelines(json.dumps(mapping))
 format_str = "var countries = JSON.parse('{}');"
 open('countries.js', 'w').writelines(format_str.format(json.dumps(mapping)))
