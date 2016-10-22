@@ -1,5 +1,4 @@
 var answer = "";
-var questions = 10;
 var try_count = 0;
 var keys;
 var counter;
