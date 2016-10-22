@@ -1,8 +1,20 @@
 var answer = "";
-var try_count = 0;
 var keys;
 var counter;
 var score;
+
+var try_count = (function() {
+  var counter = 0;
+  
+  return {
+    increment: function() { 
+      return counter++;
+    },
+    reset : function() {
+      counter = 0;
+    }
+  };
+})();
 
 function similarity(s1, s2) {
   var longer = s1;
@@ -100,12 +112,11 @@ function enter(event) {
     displayMessage('Correct!');
     random_question();
   } else {
-    if (try_count < 2) {
+    if (try_count.increment() < 2) {
       displayMessage('Try again!');
-      try_count++;
     } else {
+      try_count.reset();
       displayMessage('Wrong it was ' + answer);
-      try_count = 0;
       random_question();
     }
   }
@@ -115,6 +126,7 @@ function restart() {
   keys = shuffleArray(Object.keys(countries)).slice(0, 10);
   counter = 0;
   score = 0;
+  try_count.reset();
 
   random_question();
 }
